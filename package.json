@@ -1,0 +1,27 @@
+{
+  "name": "electron-notes-app",
+  "version": "1.0.0",
+  "description": "Simple memo application using Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rylans/electron-notes-app.git"
+  },
+  "keywords": [
+    "notes",
+    "memo",
+    "electron"
+  ],
+  "author": "Rylan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rylans/electron-notes-app/issues"
+  },
+  "homepage": "https://github.com/rylans/electron-notes-app#readme",
+  "devDependencies": {
+    "electron": "^2.0.2"
+  }
+}

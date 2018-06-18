@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Simple Note App</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container-fluid"> 
+
+    <h1>Note App </h1>
+    Write a note here.
+    <p>
+
+    <input type="text" name="msg" id="msg" placeholder="Buy eggs"> 
+    </input>
+    <button type="button" class="btn btn-primary" id="msg-submit">Add</button>
+
+    <div class="note-container">
+    </div>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+
+    </div>
+  </body>
+</html>
