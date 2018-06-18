@@ -6,3 +6,7 @@ Basic working example of a memo application with Electron
 `git clone https://github.com/rylans/electron-notes-app.git`
 
 `npm install && npm start`
+
+## Releasing
+
+For OS X: `npm run pack-mac`

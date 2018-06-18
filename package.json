@@ -4,7 +4,8 @@
   "description": "Simple memo application using Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack-mac": "electron-packager . electron-notes-app --platform=darwin --arch=x64 --asar --out dist --overwrite"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/rylans/electron-notes-app#readme",
   "devDependencies": {
-    "electron": "^2.0.2"
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0"
   }
 }
