@@ -27,6 +27,7 @@ function getNotes(userDataFolder) {
       filteredNotes.push(trimmed)
     }
   }
+  filteredNotes.reverse()
   return filteredNotes
 
 }
