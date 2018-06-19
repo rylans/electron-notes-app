@@ -3,7 +3,7 @@
 // All of the Node.js APIs are available in this process.
 var {ipcRenderer, remote} = require('electron');
 
-window.$ = window.jQuery = require('./jquery.js');
+window.$ = window.jQuery = require('./vendor/jquery.js');
 
 function bindSubmitHandler(id, formid ) {
   var item = document.querySelector(id);
