@@ -3,21 +3,7 @@
 // All of the Node.js APIs are available in this process.
 var {ipcRenderer, remote} = require('electron');
 
-var main = remote.require("./main.js")
-
 window.$ = window.jQuery = require('./jquery.js');
-
-function sendMsg() {
-  console.log("clicked");
-  //ipcRenderer.send('async', {'event': 'click', 'intent': 'view-data'});
-}
-
-function bindClickHandler(id, obj) {
-  var item = document.querySelector(id);
-  if (item != null) {
-    item.addEventListener('click', function() { ipcRenderer.send('async', obj) } );
-  }
-}
 
 function bindSubmitHandler(id, formid ) {
   var item = document.querySelector(id);
@@ -59,9 +45,6 @@ ipcRenderer.on('async-reply', (event, arg) => {
   setNotes(arg)
 });
 
-//bindClickHandler('#clicker', {'intent': 'view-data'});
-//bindClickHandler('#nav-home', {'intent': 'nav-home'});
-//bindClickHandler('#nav-quit', {'intent': 'quit'});
 bindSubmitHandler('#msg-submit', 'msg')
 
 ipcRenderer.send('async', 'ping');
