@@ -28,6 +28,7 @@ function bindSubmitHandler(id, formid ) {
 	'content': document.getElementById(formid).value
       });
       $('#' + formid).val(""); 
+      $("#msg").focus();
     });
   }
 }

@@ -1,8 +1,8 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
-const fs = require('fs')
 const path = require('path')
-const noteDelim = '-----38291-note-delim----'
+
+const noteio = require('./noteio')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -61,50 +61,14 @@ function switchWindow(page) {
   mainWindow.loadFile(page)
 }
 
-function writeNote(content) {
-  var p = path.join(app.getPath('userData'), '_notes.txt')
-  var toWrite = content + '\n' + noteDelim + '\n'
-  fs.appendFileSync(p, toWrite, function (err) {
-    if (err) throw err;
-
-  });
-  
-}
-
-function getNotes() {
-  var p = path.join(app.getPath('userData'), '_notes.txt');
-  try {
-    var allnotes = fs.readFileSync(p, 'utf8');
-  } catch (err) {
-      return []
-  }
-  var listOfNotes = allnotes.split( '\n' + noteDelim + '\n');
-
-  var filteredNotes = [];
-  for (i=0; i< listOfNotes.length; i++) {
-    var trimmed = listOfNotes[i].trim()
-    if (trimmed.length > 0) {
-      filteredNotes.push(trimmed)
-    }
-  }
-  return filteredNotes
-
+function userDataPath(){
+  return app.getPath('userData');
 }
 
 ipcMain.on('async', (event, arg) => {
-
-  if ('view-data' === arg.intent) {
-    switchWindow('listing.html')
-  } else if ('nav-home' === arg.intent) {
-    switchWindow('index.html')
-  } else if ('quit' === arg.intent) {
-    app.quit()
-  } else if ('submit' === arg.intent) {
-    writeNote(arg.content.trim())
-  } else {
-    //console.log(arg)
+  if ('submit' === arg.intent) {
+    noteio.writeNote(arg.content.trim(), userDataPath())
   }
-  var notes = getNotes()
+  var notes = noteio.getNotes(userDataPath())
   event.sender.send('async-reply', notes)
-
 });
