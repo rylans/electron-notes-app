@@ -6,9 +6,11 @@ const notesfile = '_notes.txt'
 function writeNote(content, userDataFolder) {
   var p = path.join(userDataFolder, notesfile)
   var toWrite = content + '\n' + noteDelim + '\n'
-  fs.appendFileSync(p, toWrite, function (err) {
-    if (err) throw err;
-  });
+  try {
+    fs.appendFileSync(p, toWrite)
+  } catch (err) {
+      console.log(err)
+  }
 }
 
 function getNotes(userDataFolder) {
@@ -16,7 +18,7 @@ function getNotes(userDataFolder) {
   try {
     var allnotes = fs.readFileSync(p, 'utf8');
   } catch (err) {
-      return []
+      return {'error': err, 'notes': []}
   }
   var listOfNotes = allnotes.split( '\n' + noteDelim + '\n');
 
@@ -28,7 +30,7 @@ function getNotes(userDataFolder) {
     }
   }
   filteredNotes.reverse()
-  return filteredNotes
+  return {'notes': filteredNotes}
 
 }
 

@@ -42,7 +42,11 @@ function makeNote(text) {
 }
 
 ipcRenderer.on('async-reply', (event, arg) => {
-  setNotes(arg)
+  error = arg.error
+  if (error != null && 'ENOENT' != error.code) {
+    $('#warn-alert').show()
+  }
+  setNotes(arg.notes)
 });
 
 bindSubmitHandler('#msg-submit', 'msg')
@@ -50,3 +54,4 @@ bindSubmitHandler('#msg-submit', 'msg')
 ipcRenderer.send('async', 'ping');
 
 $("#msg").focus();
+$('#warn-alert').hide()
