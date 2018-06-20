@@ -38,7 +38,7 @@ function setNotes(notes) {
 }
 
 function makeNote(text) {
-  return '<div class="note">' + text + '</div>'
+  return '<div class="card"><div class="card-body">' + text + '</div></div>'
 }
 
 ipcRenderer.on('async-reply', (event, arg) => {
